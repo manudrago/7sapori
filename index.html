@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ristorante Pizzeria 7 Sapori a Vaiano Cremasco (CR): cucina cremasca, pesce e pizza nel forno a legna. Pranzi di lavoro, matrimoni ed eventi. Tel. 0373 276399.">
+<title>7 Sapori Vaiano Cremasco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap">
+<style>
+body{margin:0}
+/* Layout: sito da ristorante-pizzeria di paese, stesso impianto della proposta Giupponi; colori dal logo 7 Sapori (bordeaux su giallo paglia) */
+:root{
+  --bg:#fdfcf7; --alt:#f7f2dc; --fg:#2b2724; --muted:#6b645d;
+  --red:#8a2424; --gold:#a8822a; --line:#e6dfc8; --on-red:#fdfcf7;
+  --serif:"Libre Baskerville", Georgia, "Times New Roman", serif;
+  --sans:"Lato", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1b1918; --alt:#25221d; --fg:#ece7e1; --muted:#b0a89f;
+  --red:#e08077; --gold:#d6b462; --line:#3a352d; --on-red:#1b1918; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1918; --alt:#25221d; --fg:#ece7e1; --muted:#b0a89f;
+  --red:#e08077; --gold:#d6b462; --line:#3a352d; --on-red:#1b1918; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.65}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+a{color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4vw,38px);color:var(--red);margin-bottom:20px}
+h3{font-size:21px}
+p{margin:0 0 14px}
+img{display:block;width:100%;object-fit:cover}
+
+header.top{position:fixed;inset:0 0 auto 0;z-index:20;padding-top:env(safe-area-inset-top,0px);color:#fff;transition:background .35s,color .35s,box-shadow .35s}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-block:16px;transition:padding .35s}
+header.top.solid{background:var(--bg);color:var(--fg);box-shadow:0 1px 0 var(--line)}
+header.top.solid .wrap{padding-block:9px}
+.logo{text-decoration:none;color:inherit;font-family:var(--serif);line-height:1;display:flex;align-items:baseline;gap:2px}
+.logo b{font-size:38px;font-weight:700;font-style:italic}
+.logo span{font-size:24px;font-style:italic}
+.logo small{display:block;font-size:11px;letter-spacing:.04em;font-style:italic;opacity:.85;margin-top:2px}
+header.top.solid .logo{color:var(--red)}
+nav{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:15px}
+nav a{color:inherit;text-decoration:none;position:relative;padding-block:4px}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav a:hover::after,nav a.on::after{transform:scaleX(1)}
+.tel{font-weight:700;text-decoration:none;white-space:nowrap;color:inherit;border:1px solid currentColor;padding:7px 14px;border-radius:3px;transition:background .25s,color .25s}
+.tel:hover{background:#fff;color:#8a2424}
+header.top.solid .tel{color:var(--red)}
+header.top.solid .tel:hover{background:var(--red);color:var(--on-red)}
+
+.hero{position:relative;height:min(88vh,780px);min-height:540px;overflow:hidden;background:#2a1512;color:#fff}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.slide.on{opacity:1}
+.slide img{height:100%;transform:scale(1.04)}
+.slide.on img{animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,10,8,.55) 0%,rgba(25,10,8,.2) 40%,rgba(25,10,8,.78) 100%)}
+.hero .content{position:absolute;inset:auto 0 0 0;z-index:2;padding-bottom:clamp(40px,8vh,80px)}
+.status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);border-radius:40px;padding:6px 14px;font-size:14px;margin-bottom:20px}
+.status i{width:9px;height:9px;border-radius:50%;background:#8bd27f;box-shadow:0 0 0 0 rgba(139,210,127,.7);animation:pulse 2s infinite}
+.status.closed i{background:#e9a24a;animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(139,210,127,0)}100%{box-shadow:0 0 0 0 rgba(139,210,127,0)}}
+.hero h1{font-size:clamp(38px,6.5vw,72px);max-width:15ch}
+.hero .motto{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2vw,21px);margin:16px 0 28px;max-width:40ch;opacity:.92}
+.hero .content > .wrap > *{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .motto{animation-delay:.12s!important}.hero .ctas{animation-delay:.24s!important}
+@keyframes up{from{transform:translateY(24px)}to{transform:none}}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;background:#fff;color:#8a2424;font-weight:700;text-decoration:none;padding:13px 24px;border-radius:3px;transition:transform .2s,box-shadow .2s;border:0;font:inherit;font-weight:700;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+.btn.line{background:transparent;color:#fff;border:1px solid #fff}
+.btn.red{background:var(--red);color:var(--on-red)}
+.dots{position:absolute;z-index:3;right:20px;bottom:24px;display:flex;gap:8px}
+.dots button{width:28px;height:3px;border:0;padding:0;background:rgba(255,255,255,.4);cursor:pointer}
+.dots button.on{background:#fff}
+.scroll-hint{position:absolute;z-index:3;left:50%;bottom:14px;width:22px;height:34px;border:2px solid rgba(255,255,255,.7);border-radius:12px;transform:translateX(-50%)}
+.scroll-hint::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;background:#fff;border-radius:2px;animation:wheel 1.8s infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+
+.info{background:var(--red);color:var(--on-red)}
+.info .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 28px;padding-block:14px;font-size:15px}
+
+section .wrap{padding-block:clamp(56px,9vw,96px)}
+section.alt{background:var(--alt)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.text{max-width:60ch}
+.feats{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
+.feats li{padding-left:18px;position:relative}
+.feats li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.pics{position:relative;padding:0 0 60px 60px}
+.pics .big{aspect-ratio:3/2;box-shadow:0 20px 40px -24px rgba(0,0,0,.5)}
+.pics .small{position:absolute;left:0;bottom:0;width:38%;aspect-ratio:3/4;border:6px solid var(--bg);box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
+
+.center{text-align:center}
+.center .intro{max-width:58ch;margin:0 auto 32px;color:var(--muted)}
+.tabs{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:40px;padding:4px;margin-bottom:36px}
+.tabs button{font:inherit;font-weight:700;font-size:15px;border:0;background:transparent;color:var(--muted);padding:9px 20px;border-radius:40px;cursor:pointer;transition:background .25s,color .25s}
+.tabs button[aria-selected="true"]{background:var(--red);color:var(--on-red)}
+.panel{max-width:720px;margin:0 auto;text-align:left}
+.panel ul{list-style:none;margin:0;padding:0}
+.panel.cols ul{columns:2;column-gap:44px}
+.panel li{display:flex;gap:10px;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line);break-inside:avoid;animation:fadeIn .45s ease both}
+.panel li b{font-family:var(--serif);font-weight:400;font-size:17px}
+.panel li i{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
+.panel li span{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red);white-space:nowrap}
+@keyframes fadeIn{from{transform:translateX(-10px)}to{transform:none}}
+.menu-note{font-size:14px;color:var(--muted);font-style:italic;margin-top:22px;text-align:center}
+
+.band{position:relative;overflow:hidden;color:#fff;text-align:center;background:#2a1512}
+.band img{position:absolute;inset:-20% 0;height:140%;will-change:transform}
+.band::after{content:"";position:absolute;inset:0;background:rgba(25,10,8,.6)}
+.band .wrap{position:relative;z-index:2;padding-block:clamp(70px,12vw,130px)}
+.band p{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3.4vw,34px);max-width:30ch;margin:0 auto 24px;line-height:1.35}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card .ph{overflow:hidden;margin-bottom:16px}
+.card img{aspect-ratio:4/3;transition:transform .7s}
+.card:hover img{transform:scale(1.06)}
+.card h3{color:var(--red);margin-bottom:8px}
+.tag{display:inline-block;font-size:13px;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:2px 10px;margin-bottom:10px}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px}
+.gallery button{border:0;padding:0;overflow:hidden;cursor:zoom-in;background:none}
+.gallery img{aspect-ratio:4/3;transition:transform .6s,filter .4s}
+.gallery button:hover img{transform:scale(1.08);filter:brightness(1.08)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(15,8,6,.92);display:grid;place-items:center;padding:24px}
+.lightbox img{width:auto;max-width:min(92vw,1100px);max-height:82vh;animation:zoom .35s ease}
+@keyframes zoom{from{transform:scale(.94)}to{transform:none}}
+.lightbox .x,.lightbox .nav{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer}
+.lightbox .x{top:calc(16px + env(safe-area-inset-top,0px));right:16px}
+.lightbox .prev{left:14px;top:50%}.lightbox .next{right:14px;top:50%}
+.lightbox p{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#eee;font-size:14px;font-style:italic;margin:0}
+
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contacts table{border-collapse:collapse;width:100%}
+.contacts td{padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.contacts td:first-child{width:42%;font-weight:700}
+.contacts tr.today td{color:var(--red)}
+.contacts tr.today td:first-child::after{content:" · oggi";font-weight:400;font-style:italic}
+.addr{font-size:18px}
+.addr strong{display:block;font-family:var(--serif);font-weight:400;color:var(--red);font-size:20px;margin-bottom:6px}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.social a{font-size:14px;font-weight:700;text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:20px;color:var(--fg);transition:border-color .2s,color .2s}
+.social a:hover{border-color:var(--red);color:var(--red)}
+
+footer{background:var(--red);color:var(--on-red);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-block:22px}
+footer .credit{opacity:.75}
+
+.fab{position:fixed;z-index:15;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--red);color:var(--on-red);font-weight:700;text-decoration:none;padding:13px 20px;border-radius:40px;box-shadow:0 10px 24px -10px rgba(0,0,0,.6);transform:translateY(120px);transition:transform .4s}
+.fab.show{transform:none}
+
+.rv.pre{opacity:0;transform:translateY(34px)}
+.rv{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+
+@media (max-width:860px){
+  .two,.contacts{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .panel.cols ul{columns:1}
+  nav{display:none}
+  .pics{padding-left:30px}
+  .dots{display:none}
+}
+@media (max-width:420px){.feats{grid-template-columns:1fr}}
+@media (min-width:861px){.fab{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv.pre{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<header class="top" id="hdr"><div class="wrap">
+  <a class="logo" href="#top"><b>7</b><div><span>sapori</span><small>Ristorante e pizza</small></div></a>
+  <nav aria-label="Menu">
+    <a href="#noi">Il ristorante</a>
+    <a href="#menu">Menù e pizze</a>
+    <a href="#eventi">Eventi</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+  <a class="tel" href="tel:+390373276399">0373 276399</a>
+</div></header>
+
+<main id="top">
+<div class="hero" id="hero">
+  <div class="slide on"><img src="img/sala.jpg" alt="La sala grande del ristorante apparecchiata"></div>
+  <div class="slide"><img loading="lazy" src="img/capesante.jpg" alt="Capesante servite nel guscio"></div>
+  <div class="slide"><img loading="lazy" src="img/sala2.jpg" alt="La seconda sala con il bancone"></div>
+  <div class="slide"><img loading="lazy" src="img/giardino.jpg" alt="Il giardino fiorito del ristorante"></div>
+  <div class="content"><div class="wrap">
+    <div class="status" id="status"><i></i><span>Aperti a pranzo e a cena · chiuso il mercoledì</span></div>
+    <h1>Ristorante Pizzeria 7 Sapori</h1>
+    <p class="motto">Non c’è amore più sincero che l’amore per il cibo.</p>
+    <div class="ctas"><a class="btn" href="tel:+390373276399">Prenota un tavolo</a><a class="btn line" href="#menu">Guarda il menù</a></div>
+  </div></div>
+  <div class="dots" id="dots" aria-label="Foto"></div>
+  <a class="scroll-hint" href="#noi" aria-label="Scorri"></a>
+</div>
+
+<div class="info"><div class="wrap">
+  <span>Via Enrico Mattei 22, Vaiano Cremasco</span><span>Pizza nel forno a legna</span><span>Pranzi di lavoro</span><span>Ampio parcheggio</span>
+</div></div>
+
+<section id="noi"><div class="wrap two">
+  <div class="text rv">
+    <h2>Il giusto mix tra gusto, cura ed eleganza</h2>
+    <p>Il 7 Sapori è un ristorante pizzeria a Vaiano Cremasco, aperto a pranzo e a cena. In cucina i sapori del territorio cremasco, dai tortelli al salva, si alternano a piatti di pesce e a una lunga lista di pizze cotte nel forno a legna.</p>
+    <p>Dolci e giardiniera li prepariamo noi. A pranzo proponiamo anche menù di lavoro a prezzo fisso.</p>
+    <ul class="feats">
+      <li>Due sale climatizzate</li>
+      <li>Forno a legna</li>
+      <li>Giardino curato</li>
+      <li>Ampio parcheggio</li>
+    </ul>
+  </div>
+  <div class="pics rv">
+    <img loading="lazy" class="big" src="img/bar.jpg" alt="Il bancone bar del ristorante">
+    <img loading="lazy" class="small" src="img/chef.jpg" alt="In cucina con il pesce fresco">
+  </div>
+</div></section>
+
+<section id="menu" class="alt"><div class="wrap center">
+  <h2 class="rv">Menù e pizze</h2>
+  <p class="intro rv">Il nostro menù alla carta, con i prezzi aggiornati. Per la pizza scegliete tra oltre quaranta proposte, anche con mozzarella senza lattosio.</p>
+  <div class="tabs rv" role="tablist" aria-label="Portate" id="tabs"></div>
+  <div class="panel" id="p-menu" role="tabpanel"></div>
+  <p class="menu-note">Coperto 2,60 €. L’asterisco (*) indica prodotti surgelati o congelati.</p>
+</div></section>
+
+<div class="band">
+  <img loading="lazy" id="par" src="img/capesante.jpg" alt="">
+  <div class="wrap">
+    <p>Pranzo di lavoro? Chiedeteci il menù a prezzo fisso del giorno.</p>
+    <a class="btn" href="tel:+390373276399">Chiama lo 0373 276399</a>
+  </div>
+</div>
+
+<section id="eventi"><div class="wrap">
+  <h2 class="rv">Le vostre feste da noi</h2>
+  <p class="rv" style="max-width:60ch;color:var(--muted)">Il salone grande e il giardino ospitano pranzi e cene per ogni ricorrenza. Raccontateci la vostra occasione e prepariamo insieme il menù.</p>
+  <div class="cards" style="margin-top:32px">
+    <div class="card rv">
+      <div class="ph"><img loading="lazy" src="img/nozze.jpg" alt="Torta nuziale allestita in giardino al tramonto"></div>
+      <span class="tag">ricevimenti</span>
+      <h3>Matrimoni</h3>
+      <p>Ricevimenti nel salone grande, con il giardino a disposizione per la torta e le foto.</p>
+    </div>
+    <div class="card rv">
+      <div class="ph"><img loading="lazy" src="img/sala.jpg" alt="Il salone apparecchiato per un evento"></div>
+      <span class="tag">famiglia</span>
+      <h3>Comunioni, cresime e battesimi</h3>
+      <p>Pranzi per le feste di famiglia nel salone grande, con un menù concordato insieme.</p>
+    </div>
+    <div class="card rv">
+      <div class="ph"><img loading="lazy" src="img/giardino.jpg" alt="Il giardino del ristorante in fiore"></div>
+      <span class="tag">gruppi</span>
+      <h3>Cene aziendali e compleanni</h3>
+      <p>Due sale separate per gruppi di ogni dimensione. Chiamateci per un preventivo.</p>
+    </div>
+  </div>
+</div></section>
+
+<div class="gallery" id="gal" aria-label="Galleria fotografica">
+  <button type="button"><img loading="lazy" src="img/dolce.jpg" alt="Un dessert della casa"></button>
+  <button type="button"><img loading="lazy" src="img/antipasto.jpg" alt="Antipasto della casa"></button>
+  <button type="button"><img loading="lazy" src="img/sala2.jpg" alt="La seconda sala"></button>
+  <button type="button"><img loading="lazy" src="img/capesante.jpg" alt="Capesante scottate"></button>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-label="Foto ingrandita">
+  <button class="x" type="button" aria-label="Chiudi">×</button>
+  <button class="nav prev" type="button" aria-label="Foto precedente">‹</button>
+  <img loading="lazy" id="lbimg" alt="">
+  <button class="nav next" type="button" aria-label="Foto successiva">›</button>
+  <p id="lbcap"></p>
+</div>
+
+<section id="contatti"><div class="wrap">
+  <h2 class="rv">Orari e contatti</h2>
+  <div class="contacts">
+    <div class="rv">
+      <table id="orari">
+        <tr data-d="1,2,4,5,6,0"><td>Tutti i giorni</td><td>pranzo e cena</td></tr>
+        <tr data-d="3"><td>Mercoledì</td><td style="color:var(--muted)">chiuso</td></tr>
+        <tr><td>Pizza</td><td>forno a legna, a pranzo e a cena</td></tr>
+        <tr><td>Asporto</td><td>in arrivo</td></tr>
+      </table>
+      <p style="font-size:14px;color:var(--muted);margin-top:14px">Per eventi e gruppi numerosi vi consigliamo di chiamare con qualche giorno di anticipo.</p>
+    </div>
+    <div class="addr rv">
+      <strong>Ristorante Pizzeria 7 Sapori</strong>
+      Via Enrico Mattei 22<br>26010 Vaiano Cremasco (CR)<br><br>
+      Tel. <a href="tel:+390373276399">0373 276399</a><br>
+      7sapori@tiscali.it
+      <div class="social">
+        <a href="https://www.facebook.com/7sapori/">Facebook</a>
+        <a href="https://www.instagram.com/raulbombelli/">Instagram</a>
+        <a href="https://vm.tiktok.com/cYmMvq/">TikTok</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Ristorante+7+Sapori+Via+Enrico+Mattei+22+Vaiano+Cremasco">Come arrivare</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>Ristorante Pizzeria 7 Sapori · Via Enrico Mattei 22, Vaiano Cremasco (CR) · Tel. 0373 276399</span>
+  <span class="credit">Proposta grafica di IdeAgency</span>
+</div></footer>
+
+<a class="fab" id="fab" href="tel:+390373276399">Prenota</a>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var slides = [].slice.call(document.querySelectorAll('.slide')), dots = document.getElementById('dots'), cur = 0, timer;
+  slides.forEach(function(s,i){
+    var b = document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Foto '+(i+1));
+    if(!i) b.className='on'; b.onclick=function(){ go(i); restart(); }; dots.appendChild(b);
+  });
+  function go(n){
+    slides[cur].classList.remove('on'); dots.children[cur].classList.remove('on');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('on'); dots.children[cur].classList.add('on');
+  }
+  function restart(){ clearInterval(timer); if(!reduce) timer = setInterval(function(){ go(cur+1); }, 6000); }
+  restart();
+
+  var now = new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Rome'})), d = now.getDay();
+  var st = document.getElementById('status'), txt = st.querySelector('span');
+  if(d===3){ st.classList.add('closed'); txt.textContent = 'Oggi siamo chiusi · ci vediamo domani'; }
+  else { txt.textContent = 'Oggi aperti a pranzo e a cena'; }
+  [].forEach.call(document.querySelectorAll('#orari tr[data-d]'), function(tr){
+    if(tr.getAttribute('data-d').split(',').indexOf(String(d))>-1) tr.classList.add('today');
+  });
+
+  var menu = {
+    'Antipasti':[['Culatello stagionato con gnocco fritto','11,00'],['Crudo di Parma riserva 24 mesi','9,00'],['Salame nostrano tagliato al coltello','8,00'],['Galantina di faraona in insalata di nocciole','10,00'],['Salva fritto con crema di peperoni e mostarda di mele','9,00'],['Insalata di mare* 2.0','13,00'],['Calamaretti* con crema di ceci e finocchio','12,00'],['Capesante scottate con porcini e polenta fritta','15,00'],['Giardiniera della casa','6,00'],['Gnocco fritto della casa','4,00'],['Verdure grigliate','6,00']],
+    'Primi':[['Tortelli cremaschi','12,00'],['Maccheroni rustici al ragù e fonduta di parmigiano','12,00'],['Pici aglio, olio, alici e pane croccante','10,00'],['Cannelloni ricotta e spinaci con raspadura','11,00'],['Couscous con verdure, burrata e gamberi*','14,00'],['Risotto al nero, piselli e seppia* arrostita','16,00']],
+    'Secondi':[['Costoletta di vitello alla milanese','22,00'],['Tagliata di manzo con rucola e raspadura','18,00'],['Il nostro vitello tonnato','10,00'],['Piovra* e patate','16,00'],['Tonno scottato con verdure spadellate','16,00'],['Frittura mista di pesce','17,00']],
+    'Pizze':[['Marinara','5,50'],['Margherita','7,00'],['Napoli','8,00'],['Siciliana','9,50'],['Romana','8,50'],['Prosciutto','8,50'],['Prosciutto e funghi','10,00'],['Capricciosa','10,50'],['Salsiccia e porcini','10,50'],['Tonno','9,00'],['Bufalina','10,00'],['Caprese','10,50'],['All’nduja','8,00'],['Diavola','11,00'],['Wurstel','8,00'],['Vegetariana','10,00'],['Petto d’oca','9,50'],['Quattro stagioni','11,00'],['Quattro formaggi','9,50'],['Frutti di mare','13,00'],['Barcaiola','12,00'],['Gamberi e zucchine','11,00'],['Calzone normale','8,50'],['Calzone farcito','10,00'],['Calzone ai formaggi','9,50'],['Tirolese','10,00'],['Alba Chiara','10,00'],['Affumicata','9,50'],['Canadese','11,00'],['Primavera','12,50'],['Valtellina','9,50'],['Trevisana','8,50'],['Bandiera d’Italia','10,00'],['Americana','8,50'],['Invernale','12,00'],['Delizia cremasca','10,00'],['Parmigiana','9,00'],['Saporita','12,00'],['Mediterranea','12,50'],['Dicembre','13,00'],['Focaccia','3,50'],['Focaccia estiva','9,50'],['Focaccia contadina','9,00']],
+    'Dolci':[['Affogato 7 Sapori','6,50'],['Crostrudel, crostata allo strudel','6,50'],['Semifreddo all’amaretto con crema vaniglia','6,00'],['Tiramisù classico della casa','6,50'],['Panna cotta con caramello e frutti di bosco','6,50'],['Macedonia al naturale','5,50'],['Sorbetto al limone','4,00'],['Profiterol*','5,00'],['Torta meringata* con cioccolata calda','6,00']]
+  };
+  var tabs = document.getElementById('tabs'), panel = document.getElementById('p-menu'), keys = Object.keys(menu);
+  keys.forEach(function(k,i){
+    var b = document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.id='t'+i; b.textContent=k;
+    b.setAttribute('aria-controls','p-menu'); b.onclick=function(){ show(k); }; tabs.appendChild(b);
+  });
+  function show(k){
+    var items = menu[k];
+    panel.className = 'panel' + (items.length > 12 ? ' cols' : '');
+    panel.innerHTML = '<ul>' + items.map(function(it,i){ return '<li style="animation-delay:'+Math.min(i*.03,.6)+'s"><b>'+it[0]+'</b><i></i><span>'+it[1]+' €</span></li>'; }).join('') + '</ul>' +
+      (k==='Pizze' ? '<p class="menu-note">Mozzarella senza lattosio +0,50 €. Ingrediente aggiunto da 0,50 a 1,00 €.</p>' : '');
+    [].forEach.call(tabs.children, function(b,i){ b.setAttribute('aria-selected', keys[i]===k ? 'true':'false'); if(keys[i]===k) panel.setAttribute('aria-labelledby',b.id); });
+  }
+  show('Pizze');
+
+  var gImgs = [].slice.call(document.querySelectorAll('#gal img')), lb = document.getElementById('lb'), li = document.getElementById('lbimg'), lc = document.getElementById('lbcap'), gi = 0;
+  function open(i){ gi=(i+gImgs.length)%gImgs.length; li.src=gImgs[gi].src; li.alt=gImgs[gi].alt; lc.textContent=gImgs[gi].alt; lb.hidden=false; }
+  gImgs.forEach(function(img,i){ img.parentNode.onclick=function(){ open(i); }; });
+  lb.querySelector('.x').onclick=function(){ lb.hidden=true; };
+  lb.querySelector('.prev').onclick=function(e){ e.stopPropagation(); open(gi-1); };
+  lb.querySelector('.next').onclick=function(e){ e.stopPropagation(); open(gi+1); };
+  lb.onclick=function(e){ if(e.target===lb) lb.hidden=true; };
+  document.addEventListener('keydown',function(e){ if(lb.hidden) return; if(e.key==='Escape') lb.hidden=true; if(e.key==='ArrowLeft') open(gi-1); if(e.key==='ArrowRight') open(gi+1); });
+
+  var hdr = document.getElementById('hdr'), fab = document.getElementById('fab'), par = document.getElementById('par'), hero = document.getElementById('hero');
+  var links = [].slice.call(document.querySelectorAll('nav a'));
+  function onScroll(){
+    var y = window.scrollY, hh = hero.offsetHeight;
+    hdr.classList.toggle('solid', y > hh - 90);
+    fab.classList.toggle('show', y > hh * .7);
+    if(!reduce && par){ var r = par.parentNode.getBoundingClientRect(); par.style.transform = 'translateY(' + (r.top * -0.18) + 'px)'; }
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if(!s) return; var b = s.getBoundingClientRect(); a.classList.toggle('on', b.top < 140 && b.bottom > 140); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.remove('pre'); io.unobserve(e.target); } }); },{threshold:.12});
+    [].forEach.call(document.querySelectorAll('.rv'), function(el){
+      if(el.getBoundingClientRect().top > window.innerHeight){ el.classList.add('pre'); io.observe(el); }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
